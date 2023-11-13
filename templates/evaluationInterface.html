@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Evaluation</title>
+  <script>
+    //document.querySelector('form').addEventListener('submit', function(e) {
+      function addMarks() {
+      //e.preventDefault();
+      // alert("Form ready to submit");
+      // code to handle the form submission goes here
+      // Question 1
+      var q1_1 = parseInt(document.getElementById('q1_1').value);
+      //alert(q1_1)
+      var q1_2 = parseInt(document.getElementById('q1_2').value);
+      //alert(q1_2)
+      var q1_3 = parseInt(document.getElementById('q1_3').value);
+      //alert(q1_3)
+      var q1_4 = parseInt(document.getElementById('q1_4').value);
+      //alert(q1_4)
+      var qstnOneMarks = parseInt(q1_1 + q1_2 + q1_3 + q1_4);
+      //alert(qstnOneMarks)
+
+      // Question 2
+      var q2_1 = parseInt(document.getElementById('q2_1').value);
+      var q2_2 = parseInt(document.getElementById('q2_2').value);
+      var q2_3 = parseInt(document.getElementById('q2_3').value);
+      var q2_4 = parseInt(document.getElementById('q2_4').value);
+      var qstnTwoMarks = q2_1 + q2_2 + q2_3 + q2_4;
+
+    // Question 3
+      var q3_1 = parseInt(document.getElementById('q3_1').value);
+      var q3_2 = parseInt(document.getElementById('q3_2').value);
+      var q3_3 = parseInt(document.getElementById('q3_3').value);
+      var q3_4 = parseInt(document.getElementById('q3_4').value);
+      var qstnThreeMarks = q3_1 + q3_2 + q3_3 + q3_4;
+
+      // Question 4
+      var q4_1 = parseInt(document.getElementById('q4_1').value);
+      var q4_2 = parseInt(document.getElementById('q4_2').value);
+      var q4_3 = parseInt(document.getElementById('q4_3').value);
+      var q4_4 = parseInt(document.getElementById('q4_4').value);
+      var qstnFourMarks = q4_1 + q4_2 + q4_3 + q4_4;
+
+      // Question 5
+      var q5_1 = parseInt(document.getElementById('q5_1').value);
+      var q5_2 = parseInt(document.getElementById('q5_2').value);
+      var q5_3 = parseInt(document.getElementById('q5_3').value);
+      var q5_4 = parseInt(document.getElementById('q5_4').value);
+      var qstnFiveMarks = q5_1 + q5_2 + q5_3 + q5_4;
+
+      // Question 6
+      var q6_1 = parseInt(document.getElementById('q6_1').value);
+      var q6_2 = parseInt(document.getElementById('q6_2').value);
+      var q6_3 = parseInt(document.getElementById('q6_3').value);
+      var q6_4 = parseInt(document.getElementById('q6_4').value);
+      var qstnSixMarks = q6_1 + q6_2 + q6_3 + q6_4;
+
+      // Question 7
+      var q7_1 = parseInt(document.getElementById('q7_1').value);
+      var q7_2 = parseInt(document.getElementById('q7_2').value);
+      var q7_3 = parseInt(document.getElementById('q7_3').value);
+      var q7_4 = parseInt(document.getElementById('q7_4').value);
+      var qstnSevenMarks = q7_1 + q7_2 + q7_3 + q7_4;
+
+
+        // Question 8
+      var q8_1 = parseInt(document.getElementById('q8_1').value);
+      var q8_2 = parseInt(document.getElementById('q8_2').value);
+      var q8_3 = parseInt(document.getElementById('q8_3').value);
+      var q8_4 = parseInt(document.getElementById('q8_4').value);
+      var qstnEightMarks = q8_1 + q8_2 + q8_3 + q8_4;
+      
+
+        // Question 9
+      var q9_1 = parseInt(document.getElementById('q9_1').value);
+      var q9_2 = parseInt(document.getElementById('q9_2').value);
+      var q9_3 = parseInt(document.getElementById('q9_3').value);
+      var q9_4 = parseInt(document.getElementById('q9_4').value);
+      var qstnNineMarks = q9_1 + q9_2 + q9_3 + q9_4;
+
+
+        // Question 10
+      var q10_1 = parseInt(document.getElementById('q10_1').value);
+      var q10_2 = parseInt(document.getElementById('q10_2').value);
+      var q10_3 = parseInt(document.getElementById('q10_3').value);
+      var q10_4 = parseInt(document.getElementById('q10_4').value);
+      var qstnTenMarks = q10_1 + q10_2 + q10_3 + q10_4;
+      // alert("Marks added not summed");
+
+      var max_qstn_one_two = Math.max(qstnOneMarks, qstnTwoMarks);
+      var max_qstn_three_four = Math.max(qstnThreeMarks, qstnFourMarks);
+      var max_qstn_five_six = Math.max(qstnFiveMarks, qstnSixMarks);
+      var max_qstn_seven_eight = Math.max(qstnSevenMarks, qstnEightMarks);
+      var max_qstn_nine_ten = Math.max(qstnNineMarks, qstnTenMarks);
+      var script_ist_marks = parseInt(max_qstn_one_two + max_qstn_three_four + max_qstn_five_six + max_qstn_seven_eight + max_qstn_nine_ten);
+      alert("Student got  "+ script_ist_marks + "  marks");
+      document.getElementById("totalmarks").value = script_ist_marks;
+
+      
+
+
+      // CODE RUNNING SUCCESSFULLY
+
+      //$.ajax({
+        
+        
+        //url: '/save_script_ist_marks/',
+        //type: 'POST',
+        //data: {
+            //'script_ist_marks': script_ist_marks,
+            //'csrfmiddlewaretoken': '{{ csrf_token }}'
+        //},
+        //success: function(data) {
+            // Handle success
+        //},
+        //error: function(xhr, textStatus, errorThrown) {
+            // Handle error
+        //}
+     //});
+    
+
+
+
+
+      
+
+      
+
+
+    }; // });
+
+  </script>
+  <style>
+    /* External CSS */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #pdf-container {
+      width: 66%;
+      height: 100vh;
+      float: left;
+      overflow: scroll;
+    }
+    #form-container {
+      width: 34%;
+      height: 100vh;
+      float: right;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f2f2f2;
+    }
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .form-label {
+      flex-basis: 20%;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .form-input {
+      flex-basis: 80%;
+      display: flex;
+      align-items: center;
+    }
+    .form-input label {
+      flex-basis: 25%;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .form-input input[type="number"] {
+      flex-basis: 15%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      font-size: 16px;
+      text-align: center;
+      outline: none;
+    }
+    .form-submit {
+      text-align: center;
+    }
+    .form-submit button {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      outline: none;
+    }
+    .form-submit button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+
+  {% for script in scripts %}
+  
+<div id="pdf-container">
+  <iframe src="{{ script.script_pdf.url }}" width="100%" height="560"></iframe>
+  
+</div>
+
+{% endfor %}
+
+<!--
+{% if script_id %}
+{% for script in scripts %}
+  {% if script.id == script_id %}
+    <div id="pdf-container">
+      <iframe src="{{ script.script_pdf.url }}" width="100%" height="560"></iframe>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+-->
+
+
+
+
+
+  
+
+  <div id="form-container">
+    <h3> Enter the Marks </h3>
+    <hr />
+    {% for script in scripts %}
+    <form method="POST" action="{% url 'save_script_ist_marks' script.script_id %}" id="marksofstd" name="marksofstd" >
+      {% endfor %}
+      {% csrf_token %}
+      <input type="hidden"  name="totalmarks"  id="totalmarks" value="10" step="1" >
+      <input type="hidden" name="script_id" id="script_id" value="{{ script_id }}" >
+      <div class="form-row">
+        <div class="form-label">Q1:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q1_1" id="q1_1" value="0" min="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q1_2" id="q1_2" value="0" min="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q1_3" id="q1_3" value="0" min="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q1_4" id="q1_4" value="0" min="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q2:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q2_1" id="q2_1" value= "0" min="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q2_2" id="q2_2" value= "0" min="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q2_3" id="q2_3" value= "0" min="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q2_4" id="q2_4" value= "0" min="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q3:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q3_1" id="q3_1" value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q3_2" id="q3_2" value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q3_3" id="q3_3" value="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q3_4" id="q3_4" value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q4:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q4_1" id="q4_1" value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q4_2" id="q4_2" value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q4_3" id="q4_3" value="0"  min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q4_4" id="q4_4" value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q5:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q5_1" id="q5_1" value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q5_2" id="q5_2" value="0"  min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q5_3" id="q5_3" value="0"  min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q5_4" id="q5_4"  value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q6:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q6_1" id="q6_1"  value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q6_2" id="q6_2" value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q6_3" id="q6_3"  value="0"  min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q6_4" id="q6_4"  value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q7:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q7_1" id="q7_1" value="0"  min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q7_2" id="q7_2"  value="0"  min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q7_3" id="q7_3"  value="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q7_4" id="q7_4"  value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q8:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q8_1" id="q8_1"  value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q8_2" id="q8_2"  value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q8_3" id="q8_3"  value="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q8_4" id="q8_4"  value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q9:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q9_1" id="q9_1" value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q9_2" id="q9_2" value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q9_3" id="q9_3" value="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q9_4" id="q9_4" value="0" min="0" max="20" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Q10:&nbsp;</div>
+        <div class="form-input">
+          <label> 1</label>
+          <input type="number" name="q10_1" id="q10_1" value="0" min="0" max="20" required>
+          <label>2</label>
+          <input type="number" name="q10_2" id="q10_2" value="0" min="0" max="20" required>
+          <label>3</label>
+          <input type="number" name="q10_3" id="q10_3" value="0" min="0" max="20" required>
+          <label>4</label>
+          <input type="number" name="q10_4" id="q10_4" value="0" min="0" max="20" required>
+        </div>
+      </div>
+      
+
+      <br/>
+      
+      <div class="form-row form-submit">
+        <button type="submit" onclick="addMarks()">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div>
+  
+    
+  </div>
+
+  <!-- {% for script in scripts %}
+
+  
+  {{ script.script_id }}
+
+  {% endfor %}  -->
+
+
+
+</body>
+</html>
+
+

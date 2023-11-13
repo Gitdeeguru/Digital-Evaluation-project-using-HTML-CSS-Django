@@ -1,0 +1,68 @@
+{% include "header.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Evaluation</title>
+    <style>
+      /* Styling for the welcome page */
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f7f7f7;
+        color: #444;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+      }
+      
+      .hero {
+        background-image: url('/static/de2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        opacity: 0.9;
+        background-color: #fff;
+        padding: 100px 0; /* Reduced padding top and bottom */
+        /*margin-bottom: 50px; */
+      }
+      
+      .hero h1 {
+        font-size: 4em;
+        color:#FFFFFF;
+        margin-bottom: 25px;
+      }
+      
+      .hero p {
+        font-size: 1.5em;
+        color:#FFFFFF;
+        margin-bottom: 50px;
+      }
+      
+      .btn {
+        background-color: #ee5858;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 40px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        text-transform: uppercase;
+      }
+      
+      .btn:hover {
+        background-color: #c51b1b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <h1>Welcome to Digital Evaluation!</h1>
+      <p>We are thrilled to have you here and hope that our software will make your life easier and more enjoyable.</p>
+      <button class="btn">Get Started</button>
+    </div>
+  </body>
+</html>
+
+{% include "footer.html" %}

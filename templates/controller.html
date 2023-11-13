@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Digital Evaluation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      background-color: #F0F0F0;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    
+    #filterScripts {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%; /* updated to fill the entire width of the screen */
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    select {
+      width: 20%; /* updated to fill the entire width of the container */
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #CCCCCC;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      background-color: #FFFFFF;
+      font-size: 14px;
+      appearance: none; /* hides default arrow in some browsers */
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path fill="rgb(136, 136, 136)" d="M2 12 L16 26 L30 12"></path></svg>'); /* custom arrow */
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      cursor: pointer;
+    }
+
+    #btnUnevaluatedScripts {
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      padding: 7px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-right: 30px;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-top: 10px;
+    }
+    
+    #data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    #data-table th,
+    #data-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #data-table th {
+      background-color: #f2f2f2;
+      color: #333;
+      font-weight: bold;
+      text-align: left;
+    }
+    
+    #data-table tr:hover {
+      background-color: #f5f5ff;
+    }
+
+    #divScripts {
+      display: block;
+    }
+
+
+   
+  </style>
+  
+  <body>
+    <h1>Distribute Scripts</h1>
+    <form method="POST" id="filterScripts" action="{% url 'distribute' %}">
+      {% csrf_token %}
+      <label for="evaluator">Evaluator:</label>
+      <select name="evaluator" id="evaluator" title="Select an evaluator">
+        {% for faculty in faculty_names %}
+        <option value="{{ faculty.faculty_id }}">{{ faculty.faculty_name }}</option>
+        {% endfor %}
+      </select>
+      <label for="subject_dropdown">Subject:</label>
+      <select name="subject_dropdown" id="subject_dropdown" title="Select a subject">
+        {% for script in script_subject_code %}
+        <option value="{{ script.script_subject_code }}">{{ script.script_subject_code }}</option>
+        {% endfor %}
+      </select>
+  
+      <input type="hidden" name="subject_value" id="subject_value">
+      <input type="hidden" name="initialevaluatorid" id="initialevaluatorid">
+      <!--<button type="button" onclick="displayDiv()" name="btnDisplay" id="btnDisplay" > View Scripts </button> -->
+      <button id="btnUnevaluatedScripts" onclick="subCode()">Unevaluated Scripts</button>
+    </form>
+
+  <div id="divScripts" > 
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>S No</th>
+        <th>Script Code</th>
+        <th>Subject Code     <b style="font-size: 1.2em">( {{ script_count }} )</b></th>
+        <th>Evaluator Code</th>
+        <th>Status</th>
+        <th><input type="checkbox" id="select-all">
+          Select All
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for script in scripts|slice:":25" %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ script.script_id }}</td>
+        <td>{{ script.script_subject_code }}</td>
+        <td>{{ script.script_evaluated_by }}</td>
+        <td>{{ script.script_progress }}</td>
+        <td><input type="checkbox" name="script_checkbox" value="{{ script.script_id }}"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+ 
+    
+    <form method="POST" action="{% url 'distributeScriptsOfStds' %}">
+      {% csrf_token %}
+      
+      
+      <input type="hidden" name="evaluatorid" id="evaluatorid" value="{{ evaluator_id }}" >
+
+      <input type="hidden" name="scriptids" id="scriptids" >
+
+    <!-- <input type="hidden" name="evltr" id="evltr" >
+      <input type="hidden" name="subcde" id="subcde" >    --> 
+    <button type="submit" onclick="distributeScripts()" name="btnDistributeScripts" id="btnDistributeScripts"> Distribute </button>
+  </form>
+
+</div>
+
+  <script>
+      //{% comment %} function subCode(){
+        
+          //event.preventDefault(); // Prevent default form submission behavior
+        //  var selectedOptionValue = document.getElementById('subject_dropdown').value;
+        //  document.getElementById('subject_value').value = selectedOptionValue; // Set value of hidden input field
+          //form.submit(); // Submit the form to the server
+        //  document.querySelector('form').submit();
+        //  alert(selectedOptionValue.toString());
+      //}; {% endcomment %}
+
+      // select checkboxes
+      const selectAllCheckbox = document.getElementById('select-all');
+      const scriptCheckboxes = document.getElementsByName('script_checkbox');
+      selectAllCheckbox.addEventListener('change', (event) => {
+        scriptCheckboxes.forEach((checkbox) => {
+          checkbox.checked = event.target.checked;
+          
+        });
+      });
+
+
+
+      function displayDiv(){
+        var div = document.getElementById("divScripts");
+        div.style.display = "block";
+      }
+
+
+      
+      
+      function subCode(){
+
+        
+
+        var selectedOptionValue = document.getElementById('subject_dropdown').value;
+        var selectedOptionText = document.getElementById('subject_dropdown').options[document.getElementById('subject_dropdown').selectedIndex].text;
+        document.getElementById('subject_value').value = selectedOptionText; // Set value of hidden input field to the selected faculty name
+        document.getElementById('initialevaluatorid').value = document.getElementById('evaluator').value; // Global Varaible linked below
+        //var evltor = document.getElementById('evaluator').selectedOptionValue.toString;
+        // document.getElementById('divScripts').
+        //alert("You are selecting Evaluator: ");
+        
+        document.querySelector('form').submit();
+        //document.getElementById('btnDisplay').style.pointer-events = "block";
+        //abc();
+
+
+        
+      };
+      function abc(){
+        document.getElementById('subject_dropdown').value = document.getElementById('subcde').value
+        document.getElementById('evaluator').value = document.getElementById('evltr').value
+      }
+      //alert(document.getElementById('evaluatorid').value);
+      //alert(evaluatorsId);
+      function distributeScripts() {
+       //alert(document.getElementsById('evaluatorid').value)
+        //var evaluatorId = document.getElementById('evaluator').value;
+        // document.getElementById('evaluatorid').value = evaluatorsId //document.getElementById('initialevaluatorid').value;
+       var scripts = document.getElementsByName('script_checkbox');
+       
+       // alert(document.getElementById('evaluator')selectedOptionValue.toString); 
+        var scriptIds = [];
+        
+        for (var i = 0; i < scripts.length; i++) {
+          if (scripts[i].checked) {
+            scriptIds.push(scripts[i].value);
+            
+          }
+        }
+        document.getElementById('scriptids').value = scriptIds.join(',');
+        // alert(document.getElementById('scriptids').value);
+
+      };
+  
+      
+      
+  </script>
+
+</body>
+</html>

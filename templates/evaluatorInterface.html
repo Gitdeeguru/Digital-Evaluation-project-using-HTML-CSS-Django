@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Evaluation</title>
+    <style>
+
+      #search-input {
+        padding: 6px 10px;
+        border: solid;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    #search-button:hover {
+      background-color: black;
+    }
+    #search-button {
+        background-color: grey;
+        color: white;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+
+
+        /* Style the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        /* Style the table header */
+        thead {
+            background-color: #d8d8d8;
+        }
+        
+        /* Style the table header cells */
+        th {
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        /* Style the table body cells */
+        .container {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        
+        .search-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        
+        .search-container input[type="text"] {
+          padding: 12px 20px;
+          border: none;
+          border-radius: 5px;
+          margin-right: 10px;
+          width: 50%;
+          font-size: 16px;
+        }
+        
+        .search-container button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: all 0.3s ease;
+        }
+        
+        .search-container button:hover {
+          background-color: #3e8e41;
+        }
+        
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+        }
+        
+        th, td {
+          text-align: left;
+          padding: 12px;
+        }
+        
+        th {
+          background-color: #f2f2f2;
+          color: #444;
+          font-size: 16px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-bottom: 2px solid #ddd;
+        }
+        
+        td {
+          font-size: 14px;
+          font-weight: 500;
+          color: #555;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        .evaluated {
+          color: #4CAF50;
+        }
+        
+        .pending {
+          color: #ff9800;
+        }
+        
+        .button-container {
+          display: flex;
+          justify-content: center;
+        }
+        
+        .button-container button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 6px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.3s ease;
+          margin-right: 10px;
+        }
+        
+        .button-container button:hover {
+          background-color: #3e8e41;
+        }
+        
+        .button-container button:disabled {
+          background-color: red;
+          cursor: not-allowed;
+        }
+        .welcome-label {
+          position: absolute;
+          top: 20px;
+          right: 120px;
+          font-weight: bold;
+      }
+      
+      .logout-button {
+          position: absolute;
+          top: 20px;
+          right: 10px;
+          background-color: #4CAF50;
+          color: white;
+          padding: 6px 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+      
+      .logout-button:hover {
+          background-color: #3e8e41;
+      }
+        
+    </style>
+</head>
+<body>
+  <br/>
+  
+  <input type="text" id="search-input" placeholder="Search...">
+  <button type="button" id="search-button">Search</button>
+
+  <div class="welcome-label" id="welcome-label"></div>
+  <button class="logout-button" id="logout-button">Logout</button>
+  
+    <table>
+        <thead>
+            <tr>
+                <th>S No.</th>
+                <th>Subject Code</th>
+                <th>Status</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for script in scripts %}
+            <tr>
+              
+                <td> {{ forloop.counter }} </td> 
+                <td>{{ script.script_subject_code }}</td>
+                <td>{{ script.script_progress }}</td>
+                <td><button {% if script.script_progress == 'Completed' %} name="btn-evaluate" id="{{ script.script_id }}" onclick="handleClick(this);" {% endif %} >{% if script.script_progress == 'Completed' %}Done{% else %}<a href="/evaluationInterface/{{ script.script_id }}">Evaluate</a>{% endif %}</button>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+    <script>
+        function handleClick(button) {
+            button.disabled = true;
+            button.style.backgroundColor = "red";
+        }
+
+        var buttons = document.querySelectorAll('[name="btn-evaluate"]');
+        buttons.forEach(function(button) {
+            var buttonId = button.getAttribute("id");
+            var isDisabled = localStorage.getItem(buttonId);
+            if (isDisabled === "true") {
+                button.disabled = true;
+                button.style.backgroundColor = "red";
+            }
+        });
+
+        var searchButton = document.getElementById("search-button");
+        searchButton.addEventListener("click", function() {
+        filterTable();
+
+        function filterTable() {
+          var input = document.getElementById("search-input");
+          var query = input.value.toLowerCase();
+          var table = document.getElementsByTagName("table")[0];
+          var rows = table.getElementsByTagName("tr");
+      
+          for (var i = 1; i < rows.length; i++) {
+              var subjectCode = rows[i].getElementsByTagName("td")[0].textContent.toLowerCase();
+              var actions = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
+              var status = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase();
+              if (subjectCode.indexOf(query) > -1 || actions.indexOf(query) > -1 || status.indexOf(query) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }
+      }
+      
+});
+
+
+  // Add JavaScript code to display the username in the welcome label
+  var username = "username";  // Replace <username> with the actual username
+  var welcomeLabel = document.getElementById("welcome-label");
+  welcomeLabel.innerText = "Welcome " + username;
+
+  // Add JavaScript code for the logout button functionality
+  var logoutButton = document.getElementById("logout-button");
+  logoutButton.addEventListener("click", function() {
+      // Perform logout actions here
+      window.location.href = "";
+  });
+
+    </script>
+</body>
+</html>

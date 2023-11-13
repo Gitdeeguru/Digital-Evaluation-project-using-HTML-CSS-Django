@@ -1,0 +1,79 @@
+{% include "header.html" %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Script</title>
+    <link rel="stylesheet" type="text/css" href="/static/scriptstyle.css">
+    <style>
+      .messages {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+      }
+
+      .message {
+        margin-bottom: 5px;
+      }
+
+      .success {
+        color: green;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+    <script>
+      // Automatically hide messages after 2 seconds
+      setTimeout(function() {
+        var messages = document.querySelector('.messages');
+        if (messages) {
+          messages.style.display = 'none';
+        }
+      }, 2000);
+    </script>
+  </head>
+  <body>
+    <br/>
+    <br/>
+    <div class="form-box">
+      <form method="post" action="{% url 'upload_file' %}" id="scriptform" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Upload Script</h2>
+        <div class="form-group">
+          <label for="usn">USN:</label>
+          <input type="text" id="usn" name="usn" required>
+        </div>
+        <div class="form-group">
+          <label for="subject-code">Subject Code:</label>
+          <input type="text" id="subject-code" name="subject-code" required>
+        </div>
+        <div class="form-group">
+          <label for="file-upload">Upload Script:</label>
+          <input type="file" id="file-upload" name="file-upload" required>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </body>
+</html>
+<br/>
+
+{% include "footer.html" %}

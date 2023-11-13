@@ -1,0 +1,70 @@
+<br/>
+<br/>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Results</title>
+	<style>
+		/* Styles for the table */
+		table {
+			border-collapse: collapse;
+			margin: 20px;
+			width: 80%;
+		}
+		th, td {
+			padding: 10px;
+			text-align: center;
+			border: 1px solid #ddd;
+		}
+		th {
+			background-color: #eee;
+		}
+		/* Styles for the box */
+		.box {
+			margin: 20px auto;
+			padding: 20px;
+			border: 2px solid #333;
+			width: 80%;
+			box-shadow: 0 0 10px #333;
+			border-radius: 10px;
+		}
+	</style>
+	
+</head>
+<body>
+	<!-- USN displayed on top -->
+	<div class="box">
+		{% if scripts %}
+		<h2>Student Results</h2>
+		
+		<p><strong>USN:</strong> {{ scripts.0.script_usn }} </p>
+		
+		<!-- Table of results -->
+		<table>
+			<thead>
+				<tr>
+					<th>Subject Code</th>
+					<th>Marks Obtained (out of 100)</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for script in scripts %}
+					<tr>
+						<td>{{ script.script_subject_code }}</td>
+						<td>{{ script.script_ist_marks }}</td>
+						<td>{% if script.script_ist_marks >= 33 %}Pass{% else %}Fail{% endif %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+    	<p>No results found for the specified USN.</p>
+	{% endif %}
+	
+	</div>
+
+	
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{% include "header.html" %}
+
+
+<br/>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Staff Information</title>
+	<link rel="stylesheet" href="/static/staffstyle.css">
+</head>
+<body>
+	<div class="form-box">
+		<h2>Staff Information</h2>
+		<form>
+			
+			<label for="staff-name">Staff Name:</label>
+			<input type="text" id="staff-name" name="staff-name" required>
+
+			<label for="staff-id">Staff ID:</label>
+			<input type="text" id="staff-id" name="staff-id" required>
+
+			<label for="branch">Branch:</label>
+			<select id="branch" name="branch" required>
+				<option value="">Select a Branch</option>
+				<option value="CIVIL">CIVIL</option>
+				<option value="CSE">CSE</option>
+				<option value="AI">AI</option>
+				<option value="EEE">EEE</option>
+				<option value="IS">IS</option>
+				<option value="E&C">E&amp;C</option>
+				<option value="Others">Others</option>
+			</select>
+
+			<label for="gender">Gender:</label>
+			<select id="gender" name="gender" required>
+				<option value="">Select a Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+			</select>
+
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+</body>
+</html>
+
+
+<br/>
+{% include "footer.html" %}

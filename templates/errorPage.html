@@ -1,0 +1,66 @@
+{% include "header.html" %}
+
+<br/>
+<br/>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Error Page</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			color: #333;
+		}
+
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 40px;
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		h1 {
+			font-size: 36px;
+			margin-top: 0;
+			color: #e74c3c;
+		}
+
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin-bottom: 20px;
+		}
+
+		button {
+			padding: 12px 20px;
+			background-color: #e74c3c;
+			border: none;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		button:hover {
+			background-color: #c0392b;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Oops! Something went wrong.</h1>
+		<p>We're sorry, but the page you requested cannot be found.</p>
+		<button onclick="window.history.back();">Go back</button>
+	</div>
+</body>
+</html>
+
+<br/>
+<br/><br/>
+<br/><br/>
+<br/>
+
+{% include "footer.html" %}
