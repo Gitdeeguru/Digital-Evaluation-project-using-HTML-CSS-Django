@@ -1,0 +1,34 @@
+/* Footer styles */
+footer {
+  width: 10%;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+footer h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+footer p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+footer .contact-us {
+  margin-right: 10px;
+}
+
+footer .development-team {
+  margin-left: 10px;
+}
+
+footer .copyright {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
